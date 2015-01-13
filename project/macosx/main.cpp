@@ -13,7 +13,8 @@
 #include "../../include/evrobot.h"
 
 
-#define MY_EVENT    1
+#define MY_EVENT1    1
+#define MY_EVENT2    2
 
 
 
@@ -35,14 +36,14 @@ public:
     {
         printf("MySystem::update\r\n");
         
-        EventRobot * myRobotEvent = mEventManager->getRobotEvent(MY_EVENT);
+        EventId id;
         
         while(1)
         {
-            if (myRobotEvent->get()==true)
-            {
-                printf("Event receveid !\r\n");
-            }
+            id = mEventManager->waitEvent();
+            
+            printf("Event: %d\r\n", id);
+            
         }
     }
     
@@ -75,11 +76,11 @@ int main(void)
     
     
     EventManager    manager;
-    EventRobot      myRobotEvent;
+    EventRobot      myRobotEvent1;
+    EventRobot      myRobotEvent2;
     
-    
-    manager.registerEvent(MY_EVENT, myRobotEvent);
-    manager.registerEvent(MY_EVENT, myRobotEvent);
+    manager.registerEvent(MY_EVENT1, &myRobotEvent1);
+    manager.registerEvent(MY_EVENT2, &myRobotEvent2);
     
     
     MySystem system(&manager);
@@ -88,7 +89,7 @@ int main(void)
     
     while(1)
     {
-        myRobotEvent.post();
+        manager.post(MY_EVENT1, 12345);
         waitMs(100);
     }
     

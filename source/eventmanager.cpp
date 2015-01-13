@@ -15,6 +15,8 @@
 
 EventManager::EventManager()
 {
+    mSynchro = new Synchronizer();
+    mQueue = new Queue<uint32_t>(new uint32_t[EVENT_QUEUE_SIZE], EVENT_QUEUE_SIZE);
     hashTableInit(&mStores, STORE_DEFAULT_SIZE);
 }
 
@@ -24,7 +26,7 @@ EventManager::~EventManager()
 }
 
 
-bool EventManager::registerEvent(const EventId id, EventRobot & ev)
+bool EventManager::registerEvent(const EventId id, EventRobot * ev)
 {
     EventRobot * robotEvent = (EventRobot *)hashTableLookup(&mStores, id);
     if (robotEvent!=0)
@@ -33,9 +35,9 @@ bool EventManager::registerEvent(const EventId id, EventRobot & ev)
         return false;
     }
     
-    ev.setId(id);
+    ev->setId(id);
     
-    hashTableInsert(&mStores, id, (void *)&ev);
+    hashTableInsert(&mStores, id, ev);
     
     return true;
 }
@@ -48,5 +50,41 @@ void EventManager::removeEvent(const EventId id)
 EventRobot * EventManager::getRobotEvent(const EventId id)
 {
     return (EventRobot *)hashTableLookup(&mStores, id);
+}
+
+void EventManager::post(const EventId id, uint32_t data)
+{
+    EventRobot * e = getRobotEvent(id);
+    if (e==0)
+    {
+        return;
+    }
+    
+    mQueue->write(id);
+    e->post(data);
+    
+    mSynchro->wakeup();
+}
+
+EventId EventManager::waitEvent()
+{
+    mSynchro->wait();
+    
+    EventId id;
+    if (mQueue->read(&id)==false)
+    {
+        printf("EventManager::waitEvent id queue empty !\r\n");
+        return EVENT_ID_INVALID;
+    }
+    
+    EventRobot * e = getRobotEvent(id);
+    
+    if (e->get()==false)
+    {
+        printf("EventManager::waitEvent data queue empty !\r\n");
+        return EVENT_ID_INVALID;
+    }
+    
+    return id;
 }
 

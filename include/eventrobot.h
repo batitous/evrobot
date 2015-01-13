@@ -9,22 +9,24 @@
 #ifndef EvRobot_eventrobot_h
 #define EvRobot_eventrobot_h
 
+#define EVENT_QUEUE_SIZE       32
+
 
 class EventRobot
 {
 public:
     EventRobot();
     
+    EventId id();
     void setId(EventId id);
     
-    void post();
+    void post(uint32_t data);
     bool get();
     
     
 private:
     EventId                 mId;
-    Queue<EventData> *      mQueue;
-    Synchronizer *          mSynchro;
+    Queue<uint32_t> *       mQueue;
 };
 
 

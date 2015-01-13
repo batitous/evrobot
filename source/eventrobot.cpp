@@ -9,13 +9,15 @@
 #include <babcode.h>
 #include "../include/evrobot.h"
 
-#define EVENT_ID_SIZE       32
-
 
 EventRobot::EventRobot()
 {
-    mSynchro = new Synchronizer();
-    mQueue = new Queue<EventData>(new EventData[EVENT_ID_SIZE], EVENT_ID_SIZE);
+    mQueue = new Queue<uint32_t>(new uint32_t[EVENT_QUEUE_SIZE], EVENT_QUEUE_SIZE);
+}
+
+EventId EventRobot::id()
+{
+    return mId;
 }
 
 void EventRobot::setId(EventId id)
@@ -24,22 +26,14 @@ void EventRobot::setId(EventId id)
 }
 
 
-void EventRobot::post()
+void EventRobot::post(uint32_t data)
 {
-    EventData e;
-    
-    e.id = mId;
-    e.data = 0;
-    
-    mQueue->write(e);
-    mSynchro->wakeup();
+    mQueue->write(data);
 }
 
 bool EventRobot::get()
 {
-    
-    mSynchro->wait();
-    
-    EventData e;
-    return mQueue->read(&e);
+    uint32_t data;
+ 
+    return mQueue->read(&data);
 }

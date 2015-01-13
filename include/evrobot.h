@@ -9,17 +9,11 @@
 #ifndef EvRobot_evrobot_h
 #define EvRobot_evrobot_h
 
-
-
-
-
 #include "evtypes.h"
 #include "queue.h"
 #include "synchronizer.h"
 #include "eventrobot.h"
 #include "eventmanager.h"
 #include "eventsystem.h"
-
-
 
 #endif

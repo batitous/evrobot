@@ -16,17 +16,19 @@ public:
     EventManager();
     ~EventManager();
     
-    
-    bool registerEvent(const EventId id, EventRobot & ev);
+    bool registerEvent(const EventId id, EventRobot * ev);
     void removeEvent(const EventId id);
     
-    EventRobot * getRobotEvent(const EventId id);
+    void post(const EventId id, uint32_t data);
+    EventId waitEvent();
     
     
 private:
     HashTable           mStores;
+    Queue<EventId> *    mQueue;
+    Synchronizer *      mSynchro;
     
-    
+    EventRobot * getRobotEvent(const EventId id);
 };
 
 #endif

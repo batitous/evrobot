@@ -12,6 +12,9 @@
 typedef uint32_t EventId;
 
 
+#define EVENT_ID_INVALID    0
+
+
 typedef struct _event_
 {
     EventId    id;
