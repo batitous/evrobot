@@ -36,14 +36,31 @@ public:
     {
         printf("MySystem::update\r\n");
         
-        EventId id;
+        EventId     id;
+        uint32_t    value;
+        
+        Queue<EventId> * queueFromEvent;
         
         while(1)
         {
-            id = mEventManager->waitEvent();
+            id = mEventManager->waitAndDispatchEvent();
             
-            printf("Event: %d\r\n", id);
+            if (id!=EVENT_ID_INVALID)
+            {
+                queueFromEvent = mEventManager->getRobotEvent(id)->queue();
             
+                printf("Event: %d\r\n", id);
+            
+                while(queueFromEvent->read(&value)==true)
+                {
+                    printf("\t%d\r\n", value);
+                    
+                    //todo callback ?
+                    
+                    
+                }
+            }
+ 
         }
     }
     
@@ -70,10 +87,23 @@ private:
 };
 
 
+void * toto(void * p)
+{
+
+    EventManager    * manager = (EventManager *)p;
+    while(1)
+    {
+        manager->post(MY_EVENT2, 345);
+        manager->post(MY_EVENT2, 678);
+        waitMs(50);
+    }
+    
+    return 0;
+}
+
 int main(void)
 {
     printf("Test EvRobot !\r\n");
-    
     
     EventManager    manager;
     EventRobot      myRobotEvent1;
@@ -86,6 +116,10 @@ int main(void)
     MySystem system(&manager);
     
     system.start();
+    
+    Thread t;
+    
+    threadInit(&t, toto, &manager);
     
     while(1)
     {

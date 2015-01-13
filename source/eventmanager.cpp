@@ -22,7 +22,6 @@ EventManager::EventManager()
 
 EventManager::~EventManager()
 {
-    
 }
 
 
@@ -61,30 +60,27 @@ void EventManager::post(const EventId id, uint32_t data)
     }
     
     mQueue->write(id);
-    e->post(data);
+    e->queue()->write(data);
     
     mSynchro->wakeup();
 }
 
-EventId EventManager::waitEvent()
+EventId EventManager::waitAndDispatchEvent()
 {
+    EventId id;
+    
+    if (mQueue->read(&id)==true)
+    {
+        return id;
+    }
+    
     mSynchro->wait();
     
-    EventId id;
-    if (mQueue->read(&id)==false)
+    if (mQueue->read(&id)==true)
     {
-        printf("EventManager::waitEvent id queue empty !\r\n");
-        return EVENT_ID_INVALID;
+        return id;
     }
     
-    EventRobot * e = getRobotEvent(id);
-    
-    if (e->get()==false)
-    {
-        printf("EventManager::waitEvent data queue empty !\r\n");
-        return EVENT_ID_INVALID;
-    }
-    
-    return id;
+    return EVENT_ID_INVALID;
 }
 

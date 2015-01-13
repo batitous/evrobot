@@ -20,15 +20,16 @@ public:
     void removeEvent(const EventId id);
     
     void post(const EventId id, uint32_t data);
-    EventId waitEvent();
+    
+    EventId waitAndDispatchEvent();
+    
+    EventRobot * getRobotEvent(const EventId id);
     
     
 private:
-    HashTable           mStores;
-    Queue<EventId> *    mQueue;
-    Synchronizer *      mSynchro;
-    
-    EventRobot * getRobotEvent(const EventId id);
+    HashTable           mStores;        // Robot's event storage object
+    Queue<EventId> *    mQueue;         // Queue of event posted
+    Synchronizer *      mSynchro;       // Inter-thread synchronization
 };
 
 #endif

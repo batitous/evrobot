@@ -81,10 +81,10 @@
 			isa = PBXGroup;
 			children = (
 				F44FEE581A6567CD0087E89D /* eventmanager.cpp */,
+				F44FEE671A6576080087E89D /* eventrobot.cpp */,
 				F44FEE5D1A656CFB0087E89D /* eventsystem.cpp */,
 				F44FEE601A6572E60087E89D /* queue.cpp */,
 				F44FEE641A6574FD0087E89D /* synchronizer.cpp */,
-				F44FEE671A6576080087E89D /* eventrobot.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -92,13 +92,13 @@
 		F448B9AF1A65607200407EFC /* Include */ = {
 			isa = PBXGroup;
 			children = (
-				F44FEE561A6566340087E89D /* evrobot.h */,
 				F44FEE571A6567980087E89D /* eventmanager.h */,
+				F44FEE661A6575C40087E89D /* eventrobot.h */,
 				F44FEE5C1A656CAC0087E89D /* eventsystem.h */,
+				F44FEE561A6566340087E89D /* evrobot.h */,
+				F44FEE691A65789D0087E89D /* evtypes.h */,
 				F44FEE5F1A6572B40087E89D /* queue.h */,
 				F44FEE631A6574E60087E89D /* synchronizer.h */,
-				F44FEE661A6575C40087E89D /* eventrobot.h */,
-				F44FEE691A65789D0087E89D /* evtypes.h */,
 			);
 			name = Include;
 			sourceTree = "<group>";

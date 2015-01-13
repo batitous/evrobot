@@ -20,13 +20,12 @@ public:
     EventId id();
     void setId(EventId id);
     
-    void post(uint32_t data);
-    bool get();
+    Queue<uint32_t> *   queue();
     
     
 private:
-    EventId                 mId;
-    Queue<uint32_t> *       mQueue;
+    EventId                 mId;        // Event's Identifier
+    Queue<uint32_t> *       mQueue;     // Queue for storing data event
 };
 
 

@@ -11,11 +11,13 @@
 
 typedef uint32_t EventId;
 
+typedef void *  EventData;
+
 
 #define EVENT_ID_INVALID    0
 
 
-typedef struct _event_
+/*typedef struct _event_
 {
     EventId    id;
     
@@ -24,6 +26,6 @@ typedef struct _event_
     //void *      specific;
     //uint32_t    size;
 } EventData;
-
+*/
 
 #endif

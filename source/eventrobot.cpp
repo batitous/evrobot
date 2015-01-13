@@ -25,15 +25,7 @@ void EventRobot::setId(EventId id)
     mId = id;
 }
 
-
-void EventRobot::post(uint32_t data)
+Queue<uint32_t> * EventRobot::queue()
 {
-    mQueue->write(data);
-}
-
-bool EventRobot::get()
-{
-    uint32_t data;
- 
-    return mQueue->read(&data);
+    return mQueue;
 }
