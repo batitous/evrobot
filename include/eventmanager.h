@@ -9,6 +9,7 @@
 #ifndef EvRobot_eventmanager_h
 #define EvRobot_eventmanager_h
 
+
 class EventManager
 {
 public:
@@ -16,17 +17,14 @@ public:
     ~EventManager();
     
     
-    bool registerEvent(const EventId id, const EventRobot & ev);
+    bool registerEvent(const EventId id, EventRobot & ev);
+    void removeEvent(const EventId id);
     
-    
-    void postEvent(const EventId id);
-    void waitEvent(const EventId id);
-    
+    EventRobot * getRobotEvent(const EventId id);
     
     
 private:
-    HashTable   mStores;
-    
+    HashTable           mStores;
     
     
 };

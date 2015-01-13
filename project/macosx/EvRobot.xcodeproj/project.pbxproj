@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		F44FEE591A6567CD0087E89D /* eventmanager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F44FEE581A6567CD0087E89D /* eventmanager.cpp */; };
 		F44FEE5B1A656B630087E89D /* libbabcode-macosx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F44FEE5A1A656B630087E89D /* libbabcode-macosx.a */; };
+		F44FEE5E1A656CFB0087E89D /* eventsystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F44FEE5D1A656CFB0087E89D /* eventsystem.cpp */; };
+		F44FEE621A6572E60087E89D /* queue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F44FEE601A6572E60087E89D /* queue.cpp */; };
+		F44FEE651A6574FD0087E89D /* synchronizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F44FEE641A6574FD0087E89D /* synchronizer.cpp */; };
+		F44FEE681A6576080087E89D /* eventrobot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F44FEE671A6576080087E89D /* eventrobot.cpp */; };
 		F4D4B5A91A6560B300D08CE2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4D4B5A81A6560B300D08CE2 /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +34,15 @@
 		F44FEE571A6567980087E89D /* eventmanager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = eventmanager.h; path = ../../include/eventmanager.h; sourceTree = "<group>"; };
 		F44FEE581A6567CD0087E89D /* eventmanager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = eventmanager.cpp; path = ../../source/eventmanager.cpp; sourceTree = "<group>"; };
 		F44FEE5A1A656B630087E89D /* libbabcode-macosx.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libbabcode-macosx.a"; path = "../../../babcode/babcode/project/macosx/Build/Products/Release/libbabcode-macosx.a"; sourceTree = "<group>"; };
+		F44FEE5C1A656CAC0087E89D /* eventsystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = eventsystem.h; path = ../../include/eventsystem.h; sourceTree = "<group>"; };
+		F44FEE5D1A656CFB0087E89D /* eventsystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = eventsystem.cpp; path = ../../source/eventsystem.cpp; sourceTree = "<group>"; };
+		F44FEE5F1A6572B40087E89D /* queue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = queue.h; path = ../../include/queue.h; sourceTree = "<group>"; };
+		F44FEE601A6572E60087E89D /* queue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = queue.cpp; path = ../../source/queue.cpp; sourceTree = "<group>"; };
+		F44FEE631A6574E60087E89D /* synchronizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = synchronizer.h; path = ../../include/synchronizer.h; sourceTree = "<group>"; };
+		F44FEE641A6574FD0087E89D /* synchronizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = synchronizer.cpp; path = ../../source/synchronizer.cpp; sourceTree = "<group>"; };
+		F44FEE661A6575C40087E89D /* eventrobot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = eventrobot.h; path = ../../include/eventrobot.h; sourceTree = "<group>"; };
+		F44FEE671A6576080087E89D /* eventrobot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = eventrobot.cpp; path = ../../source/eventrobot.cpp; sourceTree = "<group>"; };
+		F44FEE691A65789D0087E89D /* evtypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = evtypes.h; path = ../../include/evtypes.h; sourceTree = "<group>"; };
 		F4D4B5A81A6560B300D08CE2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,6 +81,10 @@
 			isa = PBXGroup;
 			children = (
 				F44FEE581A6567CD0087E89D /* eventmanager.cpp */,
+				F44FEE5D1A656CFB0087E89D /* eventsystem.cpp */,
+				F44FEE601A6572E60087E89D /* queue.cpp */,
+				F44FEE641A6574FD0087E89D /* synchronizer.cpp */,
+				F44FEE671A6576080087E89D /* eventrobot.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -77,6 +94,11 @@
 			children = (
 				F44FEE561A6566340087E89D /* evrobot.h */,
 				F44FEE571A6567980087E89D /* eventmanager.h */,
+				F44FEE5C1A656CAC0087E89D /* eventsystem.h */,
+				F44FEE5F1A6572B40087E89D /* queue.h */,
+				F44FEE631A6574E60087E89D /* synchronizer.h */,
+				F44FEE661A6575C40087E89D /* eventrobot.h */,
+				F44FEE691A65789D0087E89D /* evtypes.h */,
 			);
 			name = Include;
 			sourceTree = "<group>";
@@ -145,8 +167,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F44FEE621A6572E60087E89D /* queue.cpp in Sources */,
 				F44FEE591A6567CD0087E89D /* eventmanager.cpp in Sources */,
 				F4D4B5A91A6560B300D08CE2 /* main.cpp in Sources */,
+				F44FEE651A6574FD0087E89D /* synchronizer.cpp in Sources */,
+				F44FEE5E1A656CFB0087E89D /* eventsystem.cpp in Sources */,
+				F44FEE681A6576080087E89D /* eventrobot.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

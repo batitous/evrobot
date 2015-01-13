@@ -10,22 +10,15 @@
 #define EvRobot_evrobot_h
 
 
-typedef uint32_t EventId;
 
 
-typedef struct _event_
-{
-    EventId    id;
-    
-    //todo
-    uint32_t    data;
-    void *      specific;
-    uint32_t    size;
-} EventRobot;
 
-
+#include "evtypes.h"
+#include "queue.h"
+#include "synchronizer.h"
+#include "eventrobot.h"
 #include "eventmanager.h"
-
+#include "eventsystem.h"
 
 
 
