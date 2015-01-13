@@ -1,0 +1,288 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F44FEE591A6567CD0087E89D /* eventmanager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F44FEE581A6567CD0087E89D /* eventmanager.cpp */; };
+		F44FEE5B1A656B630087E89D /* libbabcode-macosx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F44FEE5A1A656B630087E89D /* libbabcode-macosx.a */; };
+		F4D4B5A91A6560B300D08CE2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4D4B5A81A6560B300D08CE2 /* main.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F448B9A21A65605400407EFC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		F448B9A41A65605400407EFC /* EvRobot */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EvRobot; sourceTree = BUILT_PRODUCTS_DIR; };
+		F44FEE561A6566340087E89D /* evrobot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = evrobot.h; path = ../../include/evrobot.h; sourceTree = "<group>"; };
+		F44FEE571A6567980087E89D /* eventmanager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = eventmanager.h; path = ../../include/eventmanager.h; sourceTree = "<group>"; };
+		F44FEE581A6567CD0087E89D /* eventmanager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = eventmanager.cpp; path = ../../source/eventmanager.cpp; sourceTree = "<group>"; };
+		F44FEE5A1A656B630087E89D /* libbabcode-macosx.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libbabcode-macosx.a"; path = "../../../babcode/babcode/project/macosx/Build/Products/Release/libbabcode-macosx.a"; sourceTree = "<group>"; };
+		F4D4B5A81A6560B300D08CE2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F448B9A11A65605400407EFC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F44FEE5B1A656B630087E89D /* libbabcode-macosx.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F448B99B1A65605300407EFC = {
+			isa = PBXGroup;
+			children = (
+				F44FEE5A1A656B630087E89D /* libbabcode-macosx.a */,
+				F4D4B5A71A65609900D08CE2 /* MacOsX */,
+				F448B9AF1A65607200407EFC /* Include */,
+				F448B9AE1A65606C00407EFC /* Source */,
+				F448B9A51A65605400407EFC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F448B9A51A65605400407EFC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F448B9A41A65605400407EFC /* EvRobot */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F448B9AE1A65606C00407EFC /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				F44FEE581A6567CD0087E89D /* eventmanager.cpp */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		F448B9AF1A65607200407EFC /* Include */ = {
+			isa = PBXGroup;
+			children = (
+				F44FEE561A6566340087E89D /* evrobot.h */,
+				F44FEE571A6567980087E89D /* eventmanager.h */,
+			);
+			name = Include;
+			sourceTree = "<group>";
+		};
+		F4D4B5A71A65609900D08CE2 /* MacOsX */ = {
+			isa = PBXGroup;
+			children = (
+				F4D4B5A81A6560B300D08CE2 /* main.cpp */,
+			);
+			name = MacOsX;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F448B9A31A65605400407EFC /* EvRobot */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F448B9AB1A65605400407EFC /* Build configuration list for PBXNativeTarget "EvRobot" */;
+			buildPhases = (
+				F448B9A01A65605400407EFC /* Sources */,
+				F448B9A11A65605400407EFC /* Frameworks */,
+				F448B9A21A65605400407EFC /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EvRobot;
+			productName = EvRobot;
+			productReference = F448B9A41A65605400407EFC /* EvRobot */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F448B99C1A65605400407EFC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = Evotion;
+				TargetAttributes = {
+					F448B9A31A65605400407EFC = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = F448B99F1A65605400407EFC /* Build configuration list for PBXProject "EvRobot" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F448B99B1A65605300407EFC;
+			productRefGroup = F448B9A51A65605400407EFC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F448B9A31A65605400407EFC /* EvRobot */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F448B9A01A65605400407EFC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F44FEE591A6567CD0087E89D /* eventmanager.cpp in Sources */,
+				F4D4B5A91A6560B300D08CE2 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		F448B9A91A65605400407EFC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		F448B9AA1A65605400407EFC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		F448B9AC1A65605400407EFC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/../../../babcode/babcode/include\"",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/baptiste/Desktop/Baptiste/projects/babcode/babcode/project/macosx/Build/Products/Release,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Debug;
+		};
+		F448B9AD1A65605400407EFC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/../../../babcode/babcode/include\"",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/baptiste/Desktop/Baptiste/projects/babcode/babcode/project/macosx/Build/Products/Release,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F448B99F1A65605400407EFC /* Build configuration list for PBXProject "EvRobot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F448B9A91A65605400407EFC /* Debug */,
+				F448B9AA1A65605400407EFC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F448B9AB1A65605400407EFC /* Build configuration list for PBXNativeTarget "EvRobot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F448B9AC1A65605400407EFC /* Debug */,
+				F448B9AD1A65605400407EFC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F448B99C1A65605400407EFC /* Project object */;
+}
