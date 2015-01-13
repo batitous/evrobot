@@ -9,12 +9,18 @@
 #ifndef EvRobot_evtypes_h
 #define EvRobot_evtypes_h
 
-typedef uint32_t EventId;
+
+#define EVENT_ID_INVALID    0   // Event invalid identifier
+
+
+typedef uint32_t EventId;       // The type for an event
+
+
 
 typedef void *  EventData;
 
 
-#define EVENT_ID_INVALID    0
+
 
 
 /*typedef struct _event_
@@ -27,5 +33,20 @@ typedef void *  EventData;
     //uint32_t    size;
 } EventData;
 */
+
+
+
+/** You have to inherit this class if you want a callback on an event
+ *
+ */
+class EventCode
+{
+public:
+    typedef void (EventCode::*Callback)(uint32_t data);
+    
+private:
+    
+};
+
 
 #endif

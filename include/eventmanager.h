@@ -16,7 +16,7 @@ public:
     EventManager();
     ~EventManager();
     
-    bool registerEvent(const EventId id, EventRobot * ev);
+    EventRobot * registerEvent(const EventId id, EventCode * code, EventCode::Callback callback);
     void removeEvent(const EventId id);
     
     void post(const EventId id, uint32_t data);

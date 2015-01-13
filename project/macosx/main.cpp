@@ -18,78 +18,34 @@
 
 
 
-class MySystem : public EventSystem
+
+
+class Titi : public EventCode
 {
 public:
-    MySystem(EventManager * m) : EventSystem(m)
+    Titi()
     {
         
     }
     
-    void start()
+    void event1(uint32_t d)
     {
-        threadInit(&thread, MySystem::privateThreadLauncher, this);
+        printf("Titi:event1 %d\r\n", d);
     }
     
-    
-    void update()
-    {
-        printf("MySystem::update\r\n");
-        
-        EventId     id;
-        uint32_t    value;
-        
-        Queue<EventId> * queueFromEvent;
-        
-        while(1)
-        {
-            id = mEventManager->waitAndDispatchEvent();
-            
-            if (id!=EVENT_ID_INVALID)
-            {
-                queueFromEvent = mEventManager->getRobotEvent(id)->queue();
-            
-                printf("Event: %d\r\n", id);
-            
-                while(queueFromEvent->read(&value)==true)
-                {
-                    printf("\t%d\r\n", value);
-                    
-                    //todo callback ?
-                    
-                    
-                }
-            }
- 
-        }
-    }
-    
-    
-    void stop()
+    void event2(uint32_t d)
     {
         
     }
-    
     
 private:
-    Thread thread;
-   
-    
-    static void * privateThreadLauncher(void * p)
-    {
-        MySystem * s = (MySystem *)p;
-        
-        s->update();
-        
-        return 0;
-    }
     
 };
 
 
 void * toto(void * p)
 {
-
+    
     EventManager    * manager = (EventManager *)p;
     while(1)
     {
@@ -105,15 +61,19 @@ int main(void)
 {
     printf("Test EvRobot !\r\n");
     
+    
+    Titi            myTiti;
+    
     EventManager    manager;
-    EventRobot      myRobotEvent1;
-    EventRobot      myRobotEvent2;
-    
-    manager.registerEvent(MY_EVENT1, &myRobotEvent1);
-    manager.registerEvent(MY_EVENT2, &myRobotEvent2);
+    EventRobot *    myRobotEvent1;
+    EventRobot *    myRobotEvent2;
     
     
-    MySystem system(&manager);
+    myRobotEvent1 = manager.registerEvent(MY_EVENT1, &myTiti, (EventCode::Callback)&Titi::event1);
+    myRobotEvent2 = manager.registerEvent(MY_EVENT2, 0, 0);
+    
+    
+    LocalEventSystem system(&manager);
     
     system.start();
     

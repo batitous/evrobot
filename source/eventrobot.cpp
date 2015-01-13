@@ -12,12 +12,20 @@
 
 EventRobot::EventRobot()
 {
+    mThisCode = 0;
+    mCallback = 0;
     mQueue = new Queue<uint32_t>(new uint32_t[EVENT_QUEUE_SIZE], EVENT_QUEUE_SIZE);
 }
 
 EventId EventRobot::id()
 {
     return mId;
+}
+
+void EventRobot::setCallback(EventCode * code, EventCode::Callback callback)
+{
+    mThisCode = code;
+    mCallback = callback;
 }
 
 void EventRobot::setId(EventId id)
@@ -28,4 +36,12 @@ void EventRobot::setId(EventId id)
 Queue<uint32_t> * EventRobot::queue()
 {
     return mQueue;
+}
+
+void EventRobot::callback(uint32_t data)
+{
+    if (mThisCode!=0)
+    {
+        (mThisCode->*mCallback)(data);
+    }
 }

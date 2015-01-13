@@ -24,21 +24,22 @@ EventManager::~EventManager()
 {
 }
 
-
-bool EventManager::registerEvent(const EventId id, EventRobot * ev)
+EventRobot * EventManager::registerEvent(const EventId id, EventCode * code, EventCode::Callback callback)
 {
     EventRobot * robotEvent = (EventRobot *)hashTableLookup(&mStores, id);
     if (robotEvent!=0)
     {
         printf("EventManager::registerEvent %d already exists\r\n", id);
-        return false;
+        return robotEvent;
     }
     
-    ev->setId(id);
+    robotEvent = new EventRobot();
+    robotEvent->setCallback(code, callback);
+    robotEvent->setId(id);
     
-    hashTableInsert(&mStores, id, ev);
+    hashTableInsert(&mStores, id, robotEvent);
     
-    return true;
+    return robotEvent;
 }
 
 void EventManager::removeEvent(const EventId id)

@@ -15,5 +15,6 @@
 #include "eventrobot.h"
 #include "eventmanager.h"
 #include "eventsystem.h"
+#include "localeventsystem.h"
 
 #endif
