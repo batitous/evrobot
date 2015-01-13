@@ -66,9 +66,9 @@
 			children = (
 				F44FEE5A1A656B630087E89D /* libbabcode-macosx.a */,
 				F448B9AF1A65607200407EFC /* Include */,
+				F448B9AE1A65606C00407EFC /* Source */,
 				F4D4B5A71A65609900D08CE2 /* MacOsX */,
 				F448B9A51A65605400407EFC /* Products */,
-				F448B9AE1A65606C00407EFC /* Source */,
 			);
 			sourceTree = "<group>";
 		};
