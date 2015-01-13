@@ -9,15 +9,14 @@
 #ifndef EvRobot_eventrobot_h
 #define EvRobot_eventrobot_h
 
-#define EVENT_QUEUE_SIZE       32
-
-
-
-
+/** The robot event object;
+ * - store the user's callback pointer
+ * - the event queue with event data
+ */
 class EventRobot
 {
 public:
-    EventRobot();
+    EventRobot(uint32_t queueEventSize);
     
     EventId id();
     void setCallback(EventCode * code, EventCode::Callback callback);

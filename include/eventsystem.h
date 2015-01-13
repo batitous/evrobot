@@ -9,6 +9,12 @@
 #ifndef EvRobot_eventsystem_h
 #define EvRobot_eventsystem_h
 
+
+/** The system event interface :
+ * - Responsible of start / stop system
+ * - update the dispatch event
+ *
+ */
 class EventSystem
 {
 public:

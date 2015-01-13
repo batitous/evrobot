@@ -64,22 +64,23 @@ int main(void)
     
     Titi            myTiti;
     
-    EventManager    manager;
+    EventManager    manager(32);
     EventRobot *    myRobotEvent1;
     EventRobot *    myRobotEvent2;
     
-    
+    // Register 2 events into the manager
     myRobotEvent1 = manager.registerEvent(MY_EVENT1, &myTiti, (EventCode::Callback)&Titi::event1);
     myRobotEvent2 = manager.registerEvent(MY_EVENT2, 0, 0);
     
     
-    LocalEventSystem system(&manager);
+    // Create the local event system with the manager and start it !
+    LocalEventSystem localSystem(&manager);
+    localSystem.start();
     
-    system.start();
     
     Thread t;
-    
     threadInit(&t, toto, &manager);
+    
     
     while(1)
     {

@@ -13,10 +13,11 @@
 #define STORE_DEFAULT_SIZE  32
 
 
-EventManager::EventManager()
+EventManager::EventManager(uint32_t queueEventSize)
 {
+    mQueueSize = queueEventSize;
     mSynchro = new Synchronizer();
-    mQueue = new Queue<uint32_t>(new uint32_t[EVENT_QUEUE_SIZE], EVENT_QUEUE_SIZE);
+    mQueue = new Queue<uint32_t>(new uint32_t[queueEventSize], queueEventSize);
     hashTableInit(&mStores, STORE_DEFAULT_SIZE);
 }
 
@@ -33,7 +34,7 @@ EventRobot * EventManager::registerEvent(const EventId id, EventCode * code, Eve
         return robotEvent;
     }
     
-    robotEvent = new EventRobot();
+    robotEvent = new EventRobot(mQueueSize);
     robotEvent->setCallback(code, callback);
     robotEvent->setId(id);
     

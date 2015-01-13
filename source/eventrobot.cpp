@@ -10,11 +10,11 @@
 #include "../include/evrobot.h"
 
 
-EventRobot::EventRobot()
+EventRobot::EventRobot(uint32_t queueEventSize)
 {
     mThisCode = 0;
     mCallback = 0;
-    mQueue = new Queue<uint32_t>(new uint32_t[EVENT_QUEUE_SIZE], EVENT_QUEUE_SIZE);
+    mQueue = new Queue<uint32_t>(new uint32_t[queueEventSize], queueEventSize);
 }
 
 EventId EventRobot::id()
