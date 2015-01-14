@@ -10,7 +10,7 @@
 #define EvRobot_evtypes_h
 
 
-#define EVENT_ID_INVALID    0   // Event invalid identifier
+#define EVENT_ID_INVALID    0   // Invalid event identifier
 
 
 typedef uint32_t EventId;       // The type for an event
@@ -34,7 +34,7 @@ struct EventMessage
     
     ~EventMessage()
     {
-        printf("EventMessage delete\n");
+        //printf("EventMessage delete\n");
     }
     
 };

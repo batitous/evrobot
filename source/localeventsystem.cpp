@@ -37,13 +37,11 @@ void LocalEventSystem::update()
     EventMessage *   value;
     
     MessageQueue * messageQueue;
-    EventRobot * eventRobot;
+    EventRobot * eventRobot = 0;
     
     while(mStopThread==false)
     {
-        id = mEventManager->getEventIdPosted();
-                
-        if (id!=EVENT_ID_INVALID)
+        while (  (id = mEventManager->getEventIdPosted()) != EVENT_ID_INVALID )
         {
             eventRobot = mEventManager->getRobotEvent(id);
             messageQueue = eventRobot->queue();

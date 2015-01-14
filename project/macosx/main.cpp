@@ -25,20 +25,35 @@ class Titi : public EventNotification
 public:
     Titi()
     {
-        
+        counter = 0;
     }
     
     void event1(EventMessage * d)
     {
-        printf("Titi:event1 %d\r\n", d->data.data);
+        //printf("Titi:event1 %d\r\n", d->data.data);
     }
     
     void event2(EventMessage * d)
     {
-        printf("Titi:event2 %d\r\n", d->data.data);
+        if (counter==0)
+        {
+            begin = getTicks();
+        }
+        
+        counter++;
+        
+        if (counter==100000)
+        {
+            printf("Process %d events in %f\n", counter, (float)(getTicks() - begin)/1000.0 );
+            counter = 0;
+        }
+        
+//        printf("Titi:event2 %d\r\n", d->data.data);
     }
     
 private:
+    uint32_t begin;
+    uint32_t counter;
     
 };
 
@@ -50,9 +65,9 @@ void * toto(void * p)
     EventSystem    * system = (EventSystem *)p;
     while(1)
     {
-        system->post(MY_EVENT2, index);
+        //system->post(MY_EVENT2, index);
         system->post(MY_EVENT2, index++);
-        waitMs(50);
+        //waitMs(50);
     }
     
     return 0;
@@ -86,7 +101,7 @@ int main(void)
     
     while(1)
     {
-        localSystem.post(MY_EVENT1, 12345);
+        //localSystem.post(MY_EVENT1, 12345);
         waitMs(100);
     }
     
