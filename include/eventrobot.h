@@ -19,19 +19,19 @@ public:
     EventRobot(uint32_t queueEventSize);
     
     EventId id();
-    void setCallback(EventCode * code, EventCode::Callback callback);
+    void setCallback(EventNotification * object, EventNotification::Callback callback);
     void setId(EventId id);
     
-    void callback(uint32_t data);
+    void callback(EventMessage * data);
     
-    Queue<uint32_t> *   queue();
+    MessageQueue *   queue();
     
     
 private:
     EventId                     mId;        // Event's Identifier
-    Queue<uint32_t> *           mQueue;     // Queue for storing data event
-    EventCode *                 mThisCode;  // The this object for the event's callback
-    EventCode::Callback         mCallback;  // The callback
+    MessageQueue *              mQueue;     // Queue for storing data event
+    EventNotification *         mThisCode;  // The this object for the event's callback
+    EventNotification::Callback mCallback;  // The callback
 };
 
 

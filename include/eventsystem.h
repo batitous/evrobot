@@ -25,6 +25,8 @@ public:
     virtual void update() = 0;
     virtual void stop() = 0;
     
+    virtual void post(const EventId id, uint32_t data) = 0;
+    
 protected:
     EventManager*  mEventManager;
 };

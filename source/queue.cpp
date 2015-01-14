@@ -96,13 +96,3 @@ template bool Queue<uint32_t>::write(uint32_t value);
 template bool Queue<uint32_t>::read(uint32_t* value);
 template void Queue<uint32_t>::read(uint32_t *array, uint32_t want);
 
-
-
-#include "evtypes.h"
-
-template Queue<EventData>::Queue(EventData * buffer, uint32_t size);
-template void Queue<EventData>::reset();
-template uint32_t Queue<EventData>::elementNumber();
-template bool Queue<EventData>::write(EventData value);
-template bool Queue<EventData>::read(EventData* value);
-template void Queue<EventData>::read(EventData *array, uint32_t want);

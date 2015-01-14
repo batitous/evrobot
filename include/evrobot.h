@@ -11,6 +11,7 @@
 
 #include "evtypes.h"
 #include "queue.h"
+#include "messagequeue.h"
 #include "synchronizer.h"
 #include "eventrobot.h"
 #include "eventmanager.h"

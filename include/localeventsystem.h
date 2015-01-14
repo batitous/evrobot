@@ -21,9 +21,12 @@ public:
     void update();
     void stop();
     
+    void post(const EventId id, uint32_t data);
+    
 private:
-    bool    mStopThread;
-    Thread  mThread;
+    bool                mStopThread;
+    Thread              mThread;
+    Synchronizer *      mSynchro;       // Inter-thread synchronization
     
     static void * privateThreadLauncher(void * p);
     

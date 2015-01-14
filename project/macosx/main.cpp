@@ -20,7 +20,7 @@
 
 
 
-class Titi : public EventCode
+class Titi : public EventNotification
 {
 public:
     Titi()
@@ -28,14 +28,14 @@ public:
         
     }
     
-    void event1(uint32_t d)
+    void event1(EventMessage * d)
     {
-        printf("Titi:event1 %d\r\n", d);
+        printf("Titi:event1 %d\r\n", d->data.data);
     }
     
-    void event2(uint32_t d)
+    void event2(EventMessage * d)
     {
-        
+        printf("Titi:event2 %d\r\n", d->data.data);
     }
     
 private:
@@ -45,12 +45,13 @@ private:
 
 void * toto(void * p)
 {
+    uint32_t index = 0;
     
-    EventManager    * manager = (EventManager *)p;
+    EventSystem    * system = (EventSystem *)p;
     while(1)
     {
-        manager->post(MY_EVENT2, 345);
-        manager->post(MY_EVENT2, 678);
+        system->post(MY_EVENT2, index);
+        system->post(MY_EVENT2, index++);
         waitMs(50);
     }
     
@@ -69,8 +70,9 @@ int main(void)
     EventRobot *    myRobotEvent2;
     
     // Register 2 events into the manager
-    myRobotEvent1 = manager.registerEvent(MY_EVENT1, &myTiti, (EventCode::Callback)&Titi::event1);
-    myRobotEvent2 = manager.registerEvent(MY_EVENT2, 0, 0);
+    myRobotEvent1 = manager.registerEvent(MY_EVENT1, &myTiti, (EventNotification::Callback)&Titi::event1);
+    myRobotEvent2 = manager.registerEvent(MY_EVENT2, &myTiti, (EventNotification::Callback)&Titi::event2);
+    //myRobotEvent3 = manager.registerEvent(MY_EVENT2, &myTiti, (EventCode::Callback)&Titi::event1);
     
     
     // Create the local event system with the manager and start it !
@@ -79,12 +81,12 @@ int main(void)
     
     
     Thread t;
-    threadInit(&t, toto, &manager);
+    threadInit(&t, toto, &localSystem);
     
     
     while(1)
     {
-        manager.post(MY_EVENT1, 12345);
+        localSystem.post(MY_EVENT1, 12345);
         waitMs(100);
     }
     

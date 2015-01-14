@@ -16,7 +16,6 @@
 EventManager::EventManager(uint32_t queueEventSize)
 {
     mQueueSize = queueEventSize;
-    mSynchro = new Synchronizer();
     mQueue = new Queue<uint32_t>(new uint32_t[queueEventSize], queueEventSize);
     hashTableInit(&mStores, STORE_DEFAULT_SIZE);
 }
@@ -25,17 +24,20 @@ EventManager::~EventManager()
 {
 }
 
-EventRobot * EventManager::registerEvent(const EventId id, EventCode * code, EventCode::Callback callback)
+EventRobot * EventManager::registerEvent(const EventId id, EventNotification * object, EventNotification::Callback callback)
 {
     EventRobot * robotEvent = (EventRobot *)hashTableLookup(&mStores, id);
     if (robotEvent!=0)
     {
+        
+        
+        
         printf("EventManager::registerEvent %d already exists\r\n", id);
         return robotEvent;
     }
     
     robotEvent = new EventRobot(mQueueSize);
-    robotEvent->setCallback(code, callback);
+    robotEvent->setCallback(object, callback);
     robotEvent->setId(id);
     
     hashTableInsert(&mStores, id, robotEvent);
@@ -61,13 +63,17 @@ void EventManager::post(const EventId id, uint32_t data)
         return;
     }
     
-    mQueue->write(id);
-    e->queue()->write(data);
+    EventMessage * message = new EventMessage;
     
-    mSynchro->wakeup();
+    message->size = 0;
+    message->type = 0;
+    message->data.data = data;
+    
+    mQueue->write(id);
+    e->queue()->write(message);
 }
 
-EventId EventManager::waitAndDispatchEvent()
+EventId EventManager::getEventIdPosted()
 {
     EventId id;
     
@@ -75,14 +81,7 @@ EventId EventManager::waitAndDispatchEvent()
     {
         return id;
     }
-    
-    mSynchro->wait();
-    
-    if (mQueue->read(&id)==true)
-    {
-        return id;
-    }
-    
+        
     return EVENT_ID_INVALID;
 }
 

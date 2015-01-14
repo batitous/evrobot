@@ -17,32 +17,37 @@ typedef uint32_t EventId;       // The type for an event
 
 
 
-typedef void *  EventData;
-
-
-
-
-
-/*typedef struct _event_
+struct EventMessage
 {
-    EventId    id;
+    uint32_t    type;
+    uint32_t    size;
+    union _data_
+    {
+        void * buffer;
+        uint32_t data;
+    } data;
+  
+    EventMessage()
+    {
+        
+    }
     
-    //todo
-    uint32_t    data;
-    //void *      specific;
-    //uint32_t    size;
-} EventData;
-*/
+    ~EventMessage()
+    {
+        printf("EventMessage delete\n");
+    }
+    
+};
 
 
 
 /** You have to inherit this class if you want a callback on an event
  *
  */
-class EventCode
+class EventNotification
 {
 public:
-    typedef void (EventCode::*Callback)(uint32_t data);
+    typedef void (EventNotification::*Callback)(EventMessage * data);
     
 private:
     

@@ -54,6 +54,13 @@ public:
      */
     bool read(T* value);
     
+    /** 
+     * @brief Read an array of element.
+     * Warning : you have to be sure there is enough element to be read with elementNumber
+     *
+     * @param array     Array where store the element read
+     * @param want      Number of element to read
+     */
     void read(T *array, uint32_t want);
     
 private:
