@@ -9,6 +9,8 @@
 #ifndef EvRobot_evrobot_h
 #define EvRobot_evrobot_h
 
+#include <babextended.h>
+
 #include "evtypes.h"
 #include "queue.h"
 #include "messagequeue.h"
@@ -17,5 +19,18 @@
 #include "eventmanager.h"
 #include "eventsystem.h"
 #include "localeventsystem.h"
+
+class EvRobot
+{
+public:
+    static LocalEventSystem * localEventSystem();
+    
+    
+private:
+    static EventManager *          mLocalManager;
+    static LocalEventSystem *      mLocalEventSystem;
+    
+};
+
 
 #endif

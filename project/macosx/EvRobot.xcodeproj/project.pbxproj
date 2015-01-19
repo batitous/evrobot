@@ -13,6 +13,7 @@
 		F44FEE6C1A6598F40087E89D /* localeventsystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F44FEE6B1A6598F40087E89D /* localeventsystem.cpp */; };
 		F44FEE701A666C4C0087E89D /* messagequeue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F44FEE6F1A666C4C0087E89D /* messagequeue.cpp */; };
 		F4760E201A6D0ECC005F7D64 /* libbabextended.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4760E1F1A6D0ECC005F7D64 /* libbabextended.a */; };
+		F4760E251A6D55CB005F7D64 /* evrobot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4760E241A6D55CB005F7D64 /* evrobot.cpp */; };
 		F4D4B5A91A6560B300D08CE2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4D4B5A81A6560B300D08CE2 /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		F44FEE6E1A666C380087E89D /* messagequeue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = messagequeue.h; path = ../../include/messagequeue.h; sourceTree = "<group>"; };
 		F44FEE6F1A666C4C0087E89D /* messagequeue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = messagequeue.cpp; path = ../../source/messagequeue.cpp; sourceTree = "<group>"; };
 		F4760E1F1A6D0ECC005F7D64 /* libbabextended.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbabextended.a; path = ../../../babcode/babextended/project/macosx/Build/Products/Release/libbabextended.a; sourceTree = "<group>"; };
+		F4760E241A6D55CB005F7D64 /* evrobot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = evrobot.cpp; path = ../../source/evrobot.cpp; sourceTree = "<group>"; };
 		F4D4B5A81A6560B300D08CE2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,6 +87,7 @@
 				F44FEE5D1A656CFB0087E89D /* eventsystem.cpp */,
 				F44FEE6B1A6598F40087E89D /* localeventsystem.cpp */,
 				F44FEE6F1A666C4C0087E89D /* messagequeue.cpp */,
+				F4760E241A6D55CB005F7D64 /* evrobot.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -167,6 +170,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4760E251A6D55CB005F7D64 /* evrobot.cpp in Sources */,
 				F44FEE591A6567CD0087E89D /* eventmanager.cpp in Sources */,
 				F44FEE6C1A6598F40087E89D /* localeventsystem.cpp in Sources */,
 				F44FEE701A666C4C0087E89D /* messagequeue.cpp in Sources */,

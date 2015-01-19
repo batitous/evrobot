@@ -19,3 +19,7 @@ EventSystem::~EventSystem()
 {
 }
 
+EventManager * EventSystem::eventManager()
+{
+    return mEventManager;
+}
