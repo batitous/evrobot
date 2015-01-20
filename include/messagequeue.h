@@ -36,20 +36,23 @@ public:
      * @param value     Value to be written
      * @return False if queue full
      */
-    bool write(EventMessage * value);
+    bool write(uint32_t value);
+    bool write(float value);
+    bool write(uint8_t * ptr, uint32_t size);
+    
     
     /**
      * @brief Read a value from the queue
      * @param value     Pointer to a value
      * @return false if queue empty
      */
-    EventMessage * read();
+    bool read(EventMessage ** value);
     
 private:
     uint32_t        mHead;  /**< queue head */
     uint32_t        mTail;  /**< queue tail */
     uint32_t        mSize;  /**< queue size */
-    EventMessage**  mPending;   /**< buffer where store the value */
+    EventMessage*  mPending;   /**< buffer where store the value */
     
 };
 

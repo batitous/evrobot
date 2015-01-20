@@ -30,7 +30,7 @@ public:
     
     void event1(EventMessage * d)
     {
-       // printf("Titi:event1 %d\r\n", d->data.data);
+       printf("Titi:event1 %d\r\n", d->value.unsignedInteger);
     }
     
     void event2(EventMessage * d)

@@ -63,14 +63,8 @@ void EventManager::post(const EventId id, uint32_t data)
         return;
     }
     
-    EventMessage * message = new EventMessage;
-    
-    message->size = 0;
-    message->type = 0;
-    message->data.data = data;
-    
     mQueue->write(id);
-    e->queue()->write(message);
+    e->queue()->write(data);
 }
 
 EventId EventManager::getEventIdPosted()

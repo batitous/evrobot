@@ -48,16 +48,14 @@ void LocalEventSystem::update()
             
 //            printf("Event: %d\r\n", id);
             
-            while( (value = messageQueue->read())!=0)
+            while( (messageQueue->read(&value))!=0)
             {
 //                printf("\t%d\r\n", value);
-                
                 
                 //todo
                 
                 eventRobot->callback(value);
                 
-                delete value;
             }
         }
         

@@ -9,13 +9,14 @@
 #include <babextended.h>
 #include "../include/evrobot.h"
 
+#define CHECK_QUEUE     uint32_t size = mSize-1; if ( ((mTail+1) & (size)) == ((mHead) & (size)) ){ return false; }
 
 MessageQueue::MessageQueue(uint32_t size)
 {
     mHead = 0;
     mTail = 0;
     mSize = size;
-    mPending = new EventMessage *[size];
+    mPending = new EventMessage[size];
 }
 
 void MessageQueue::reset()
@@ -29,31 +30,51 @@ uint32_t MessageQueue::elementNumber()
     return mTail - mHead;
 }
 
-bool MessageQueue::write(EventMessage * value)
+bool MessageQueue::write(float value)
 {
-    uint32_t size = mSize-1;
-    if ( ((mTail+1) & (size)) == ((mHead) & (size)) )
-    {
-        return false;
-    }
+    CHECK_QUEUE
     
-    mPending[mTail & (size)] = value;
+    EventMessage * m = &mPending[mTail & (size)];
+    m->size = 0;
+    m->value.signedFloat = value;
     mTail++;
     
     return true;
 }
 
-EventMessage* MessageQueue::read()
+bool MessageQueue::write(uint8_t * array, uint32_t arraySize)
+{
+    CHECK_QUEUE
+    
+    EventMessage * m = &mPending[mTail & (size)];
+    m->size = arraySize;
+    m->value.rawByteArray = array;
+    mTail++;
+    
+    return true;
+}
+
+bool MessageQueue::write(uint32_t rawValue)
+{
+    CHECK_QUEUE
+    
+    EventMessage * m = &mPending[mTail & (size)];
+    m->size = 0;
+    m->value.unsignedInteger = rawValue;
+    mTail++;
+    
+    return true;
+}
+
+bool MessageQueue::read(EventMessage ** value)
 {
     if (mHead == mTail)
     {
-        return 0;
+        return false;
     }
  
-    EventMessage * message;
-    
-    message = mPending[mHead & (mSize-1)];
+    *value = &mPending[mHead & (mSize-1)];
     mHead++;
     
-    return message;
+    return true;
 }
