@@ -15,14 +15,19 @@
 #include "queue.h"
 #include "messagequeue.h"
 #include "synchronizer.h"
-#include "eventrobot.h"
+#include "eventelement.h"
 #include "eventmanager.h"
 #include "eventsystem.h"
 #include "localeventsystem.h"
 
+
+/** The global robot event object
+ */
 class EvRobot
 {
 public:
+
+    // get a singleton of the local event system
     static LocalEventSystem * localEventSystem();
     
     

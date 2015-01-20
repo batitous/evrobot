@@ -12,7 +12,7 @@
 
 /** The system event interface :
  * - Responsible of start / stop system
- * - update the dispatch event
+ * - update the dispatch event loop
  *
  */
 class EventSystem
@@ -29,6 +29,8 @@ public:
     virtual void stop() = 0;
     
     virtual void post(const EventId id, uint32_t data) = 0;
+    virtual void post(const EventId id, int32_t data) = 0;
+    virtual void post(const EventId id, float data) = 0;
     
 protected:
     EventManager*  mEventManager;

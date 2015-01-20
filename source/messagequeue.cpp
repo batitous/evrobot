@@ -30,7 +30,7 @@ uint32_t MessageQueue::elementNumber()
     return mTail - mHead;
 }
 
-bool MessageQueue::write(float value)
+bool MessageQueue::writeFloat(float value)
 {
     CHECK_QUEUE
     
@@ -42,7 +42,7 @@ bool MessageQueue::write(float value)
     return true;
 }
 
-bool MessageQueue::write(uint8_t * array, uint32_t arraySize)
+bool MessageQueue::writeRawArray(uint8_t * array, uint32_t arraySize)
 {
     CHECK_QUEUE
     
@@ -54,13 +54,25 @@ bool MessageQueue::write(uint8_t * array, uint32_t arraySize)
     return true;
 }
 
-bool MessageQueue::write(uint32_t rawValue)
+bool MessageQueue::writeUint32(uint32_t rawValue)
 {
     CHECK_QUEUE
     
     EventMessage * m = &mPending[mTail & (size)];
     m->size = 0;
     m->value.unsignedInteger = rawValue;
+    mTail++;
+    
+    return true;
+}
+
+bool MessageQueue::writeInt32(int32_t rawValue)
+{
+    CHECK_QUEUE
+    
+    EventMessage * m = &mPending[mTail & (size)];
+    m->size = 0;
+    m->value.signedInteger = rawValue;
     mTail++;
     
     return true;

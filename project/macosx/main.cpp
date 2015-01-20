@@ -88,8 +88,8 @@ int main(void)
     EventManager * manager = localSystem->eventManager();
     
     
-    EventRobot *    myRobotEvent1;
-    EventRobot *    myRobotEvent2;
+    EventElement *    myRobotEvent1;
+    EventElement *    myRobotEvent2;
     
     // Register 2 events into the manager
     myRobotEvent1 = manager->registerEvent(MY_EVENT1, &myTiti, (EventNotification::Callback)&Titi::event1);

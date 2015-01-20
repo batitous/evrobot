@@ -24,19 +24,24 @@ public:
     EventManager(uint32_t queueEventSize);
     ~EventManager();
     
-    EventRobot * registerEvent(const EventId id, EventNotification * object, EventNotification::Callback callback);
+    EventElement * registerEvent(const EventId id, EventNotification * object, EventNotification::Callback callback);
     void removeEvent(const EventId id);
     
+    // Post an event with specified data
     void post(const EventId id, uint32_t data);
+    void post(const EventId id, float data);
+    void post(const EventId id, int32_t data);
     
+    // Get the last event identifier posted
     EventId getEventIdPosted();
 
-    EventRobot * getRobotEvent(const EventId id);
+    // Get the registered event from the specified identifier
+    EventElement * getEvent(const EventId id);
     
     
 private:
     uint32_t            mQueueSize;     // Number of event maximum
-    HashTable           mStores;        // Robot's event storage object
+    HashTable           mStores;        // Event storage object
     Queue<EventId> *    mQueue;         // Queue of event posted
 };
 

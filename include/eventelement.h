@@ -6,17 +6,17 @@
 //  Copyright (c) 2015 Evotion. All rights reserved.
 //
 
-#ifndef EvRobot_eventrobot_h
-#define EvRobot_eventrobot_h
+#ifndef EvRobot_eventelement_h
+#define EvRobot_eventelement_h
 
-/** The robot event object;
+/** An event element object;
  * - store the user's callback pointer
- * - the event queue with event data
+ * - store the event queue with message data
  */
-class EventRobot
+class EventElement
 {
 public:
-    EventRobot(uint32_t queueEventSize);
+    EventElement(uint32_t queueEventSize);
     
     EventId id();
     void setCallback(EventNotification * object, EventNotification::Callback callback);
@@ -29,7 +29,7 @@ public:
     
 private:
     EventId                     mId;        // Event's Identifier
-    MessageQueue *              mQueue;     // Queue for storing data event
+    MessageQueue *              mQueue;     // Queue for storing message event
     EventNotification *         mThisCode;  // The this object for the event's callback
     EventNotification::Callback mCallback;  // The callback
 };

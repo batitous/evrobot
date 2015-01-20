@@ -10,35 +10,35 @@
 #include "../include/evrobot.h"
 
 
-EventRobot::EventRobot(uint32_t queueEventSize)
+EventElement::EventElement(uint32_t queueEventSize)
 {
     mThisCode = 0;
     mCallback = 0;
     mQueue = new MessageQueue(queueEventSize);
 }
 
-EventId EventRobot::id()
+EventId EventElement::id()
 {
     return mId;
 }
 
-void EventRobot::setCallback(EventNotification * object, EventNotification::Callback callback)
+void EventElement::setCallback(EventNotification * object, EventNotification::Callback callback)
 {
     mThisCode = object;
     mCallback = callback;
 }
 
-void EventRobot::setId(EventId id)
+void EventElement::setId(EventId id)
 {
     mId = id;
 }
 
-MessageQueue * EventRobot::queue()
+MessageQueue * EventElement::queue()
 {
     return mQueue;
 }
 
-void EventRobot::callback(EventMessage * data)
+void EventElement::callback(EventMessage * data)
 {
     if (mThisCode!=0)
     {

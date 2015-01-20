@@ -36,9 +36,10 @@ public:
      * @param value     Value to be written
      * @return False if queue full
      */
-    bool write(uint32_t value);
-    bool write(float value);
-    bool write(uint8_t * ptr, uint32_t size);
+    bool writeUint32(uint32_t value);
+    bool writeInt32(int32_t value);
+    bool writeFloat(float value);
+    bool writeRawArray(uint8_t * ptr, uint32_t size);
     
     
     /**
@@ -52,7 +53,7 @@ private:
     uint32_t        mHead;  /**< queue head */
     uint32_t        mTail;  /**< queue tail */
     uint32_t        mSize;  /**< queue size */
-    EventMessage*  mPending;   /**< buffer where store the value */
+    EventMessage *  mPending;   /**< buffer where store the value */
     
 };
 

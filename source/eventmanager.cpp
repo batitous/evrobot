@@ -24,25 +24,25 @@ EventManager::~EventManager()
 {
 }
 
-EventRobot * EventManager::registerEvent(const EventId id, EventNotification * object, EventNotification::Callback callback)
+EventElement * EventManager::registerEvent(const EventId id, EventNotification * object, EventNotification::Callback callback)
 {
-    EventRobot * robotEvent = (EventRobot *)hashTableLookup(&mStores, id);
-    if (robotEvent!=0)
+    EventElement * event = (EventElement *)hashTableLookup(&mStores, id);
+    if (event!=0)
     {
         
         
         
         printf("EventManager::registerEvent %d already exists\r\n", id);
-        return robotEvent;
+        return event;
     }
     
-    robotEvent = new EventRobot(mQueueSize);
-    robotEvent->setCallback(object, callback);
-    robotEvent->setId(id);
+    event = new EventElement(mQueueSize);
+    event->setCallback(object, callback);
+    event->setId(id);
     
-    hashTableInsert(&mStores, id, robotEvent);
+    hashTableInsert(&mStores, id, event);
     
-    return robotEvent;
+    return event;
 }
 
 void EventManager::removeEvent(const EventId id)
@@ -50,21 +50,45 @@ void EventManager::removeEvent(const EventId id)
     hashTableDelete(&mStores, id);
 }
 
-EventRobot * EventManager::getRobotEvent(const EventId id)
+EventElement * EventManager::getEvent(const EventId id)
 {
-    return (EventRobot *)hashTableLookup(&mStores, id);
+    return (EventElement *)hashTableLookup(&mStores, id);
 }
 
 void EventManager::post(const EventId id, uint32_t data)
 {
-    EventRobot * e = getRobotEvent(id);
+    EventElement * e = getEvent(id);
     if (e==0)
     {
         return;
     }
     
     mQueue->write(id);
-    e->queue()->write(data);
+    e->queue()->writeUint32(data);
+}
+
+void EventManager::post(const EventId id, float data)
+{
+    EventElement * e = getEvent(id);
+    if (e==0)
+    {
+        return;
+    }
+    
+    mQueue->write(id);
+    e->queue()->writeFloat(data);
+}
+
+void EventManager::post(const EventId id, int32_t data)
+{
+    EventElement * e = getEvent(id);
+    if (e==0)
+    {
+        return;
+    }
+    
+    mQueue->write(id);
+    e->queue()->writeInt32(data);
 }
 
 EventId EventManager::getEventIdPosted()

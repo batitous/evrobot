@@ -34,17 +34,17 @@ void LocalEventSystem::start()
 void LocalEventSystem::update()
 {
     EventId         id;
-    EventMessage *   value;
+    EventMessage *  value;
     
-    MessageQueue * messageQueue;
-    EventRobot * eventRobot = 0;
+    MessageQueue *  messageQueue;
+    EventElement *  event = 0;
     
     while(mStopThread==false)
     {
         while (  (id = mEventManager->getEventIdPosted()) != EVENT_ID_INVALID )
         {
-            eventRobot = mEventManager->getRobotEvent(id);
-            messageQueue = eventRobot->queue();
+            event = mEventManager->getEvent(id);
+            messageQueue = event->queue();
             
 //            printf("Event: %d\r\n", id);
             
@@ -54,7 +54,7 @@ void LocalEventSystem::update()
                 
                 //todo
                 
-                eventRobot->callback(value);
+                event->callback(value);
                 
             }
         }
@@ -65,6 +65,18 @@ void LocalEventSystem::update()
 }
 
 void LocalEventSystem::post(const EventId id, uint32_t data)
+{
+    mEventManager->post(id, data);
+    mSynchro->wakeup();
+}
+
+void LocalEventSystem::post(const EventId id, float data)
+{
+    mEventManager->post(id, data);
+    mSynchro->wakeup();
+}
+
+void LocalEventSystem::post(const EventId id, int32_t data)
 {
     mEventManager->post(id, data);
     mSynchro->wakeup();

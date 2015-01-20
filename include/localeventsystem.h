@@ -22,6 +22,8 @@ public:
     void stop();
     
     void post(const EventId id, uint32_t data);
+    void post(const EventId id, float data);
+    void post(const EventId id, int32_t data);
     
 private:
     bool                mStopThread;
