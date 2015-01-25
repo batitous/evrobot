@@ -6,11 +6,9 @@
 //  Copyright (c) 2015 Evotion. All rights reserved.
 //
 
-#include <stdio.h>
-
-#include <babextended.h>
-
 #include "../../include/evrobot.h"
+
+#include <stdio.h>
 
 
 #define MY_EVENT1    1

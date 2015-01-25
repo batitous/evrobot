@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 Evotion. All rights reserved.
 //
 
-#include <babextended.h>
 #include "../include/evrobot.h"
 
 #define CHECK_QUEUE     uint32_t size = mSize-1; if ( ((mTail+1) & (size)) == ((mHead) & (size)) ){ return false; }
