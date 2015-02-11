@@ -37,7 +37,9 @@ public:
     EventSystem();
     virtual ~EventSystem();
     
+    // Register a new event with the specified user object and callback
     EventElement * registerEvent(const EventId id, EventNotification * object, EventNotification::Callback callback);
+
     void removeEvent(const EventId id);
     
     // Get the last event identifier posted

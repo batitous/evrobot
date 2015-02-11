@@ -37,6 +37,7 @@ class LocalEventSystem : public EventSystem
 public:
     LocalEventSystem();
     
+    // Set the remote address of a distance event system
     void setRemoteAddress(const IpAddress * address);
     
     void start();
