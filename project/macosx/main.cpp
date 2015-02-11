@@ -112,14 +112,6 @@ int main(void)
     // Create the local event system with the manager and start it !
     localSystem->start();
     
-    IpAddress address;
-    address.a = 127;
-    address.b = 0;
-    address.c = 0;
-    address.d = 1;
-    address.port = CONNECTION_EVENT_REMOTE_PORT;
-    localSystem->connect(&address);
-    
     Thread t;
     threadInit(&t, toto, &localSystem);
     

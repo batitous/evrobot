@@ -37,7 +37,7 @@ class LocalEventSystem : public EventSystem
 public:
     LocalEventSystem();
     
-    void connect(const IpAddress * address);
+    void setRemoteAddress(const IpAddress * address);
     
     void start();
     void update();
@@ -53,6 +53,8 @@ private:
     UdpConnection *     mConnection;
     uint8_t *           mBuffer;
     ByteStream *        mStream;
+    IpAddress           mLocalIp;
+    IpAddress           mRemoteIp;
     
     void sendEvent(const EventId id, EventDataType type, uint32_t data);
     

@@ -22,6 +22,8 @@
  */
 
 #include "../include/evrobot.h"
+#include <string.h>
+
 
 #define UDP_EVENT_PROTOCOL_ID   0xBABADEAD
 
@@ -43,11 +45,18 @@ LocalEventSystem::LocalEventSystem() : EventSystem()
     mStream = newByteStream(mBuffer, UDP_CONNECTION_PACKET_DATA_MAX);
     
     mConnection = new UdpConnection(UDP_EVENT_PROTOCOL_ID);
+    
+    mLocalIp.a = 127;
+    mLocalIp.b = 0;
+    mLocalIp.c = 0;
+    mLocalIp.d = 1;
+    mLocalIp.port = CONNECTION_EVENT_LOCAL_PORT;
 }
 
-void LocalEventSystem::connect(const IpAddress * address)
+void LocalEventSystem::setRemoteAddress(const IpAddress * address)
 {
-    mConnection->connect(address);
+    memcpy(&mRemoteIp, address, sizeof(IpAddress));
+    mRemoteIp.port = CONNECTION_EVENT_REMOTE_PORT;
 }
 
 void LocalEventSystem::start()
@@ -65,9 +74,7 @@ void LocalEventSystem::update()
     uint8_t * packet = new uint8_t[UDP_CONNECTION_PACKET_DATA_MAX];
     ByteStream * stream = newByteStream(packet, UDP_CONNECTION_PACKET_DATA_MAX);
     
-    
-    mConnection->start(CONNECTION_EVENT_REMOTE_PORT);
-    
+    mConnection->start(CONNECTION_EVENT_LOCAL_PORT);
     
     while(mStopThread==false)
     {
@@ -94,12 +101,16 @@ void LocalEventSystem::sendEvent(const EventId id, EventDataType type, uint32_t 
     EventElement * e = getEvent(id);
     if (e==0)
     {
-        return;
+        mConnection->connect(&mRemoteIp);
+    }
+    else
+    {
+        mConnection->connect(&mLocalIp);
     }
 
     resetByteStream(mStream);
     write32BitsToStream(mStream, id);
-    write32BitsToStream(mStream, id);
+    write32BitsToStream(mStream, type);
     write32BitsToStream(mStream, data);
     
     mConnection->send(mStream->buffer, getByteStreamSize(mStream));
@@ -112,12 +123,12 @@ void LocalEventSystem::post(const EventId id, uint32_t data)
 
 void LocalEventSystem::post(const EventId id, float data)
 {
-    sendEvent(id, EVENT_DATA_FLOAT32, (uint32_t)data);
+    sendEvent(id, EVENT_DATA_FLOAT32, *(uint32_t *)&data);
 }
 
 void LocalEventSystem::post(const EventId id, int32_t data)
 {
-    sendEvent(id, EVENT_DATA_INT32, (uint32_t)data);
+    sendEvent(id, EVENT_DATA_INT32, *(uint32_t *)&data);
 }
 
 void LocalEventSystem::stop()
