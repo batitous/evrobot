@@ -7,11 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F44FEE591A6567CD0087E89D /* eventmanager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F44FEE581A6567CD0087E89D /* eventmanager.cpp */; };
 		F44FEE5E1A656CFB0087E89D /* eventsystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F44FEE5D1A656CFB0087E89D /* eventsystem.cpp */; };
 		F44FEE681A6576080087E89D /* eventelement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F44FEE671A6576080087E89D /* eventelement.cpp */; };
 		F44FEE6C1A6598F40087E89D /* localeventsystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F44FEE6B1A6598F40087E89D /* localeventsystem.cpp */; };
-		F44FEE701A666C4C0087E89D /* messagequeue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F44FEE6F1A666C4C0087E89D /* messagequeue.cpp */; };
 		F4760E201A6D0ECC005F7D64 /* libbabextended.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4760E1F1A6D0ECC005F7D64 /* libbabextended.a */; };
 		F4760E251A6D55CB005F7D64 /* evrobot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4760E241A6D55CB005F7D64 /* evrobot.cpp */; };
 		F4D4B5A91A6560B300D08CE2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4D4B5A81A6560B300D08CE2 /* main.cpp */; };
@@ -32,8 +30,6 @@
 /* Begin PBXFileReference section */
 		F448B9A41A65605400407EFC /* EvRobot */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EvRobot; sourceTree = BUILT_PRODUCTS_DIR; };
 		F44FEE561A6566340087E89D /* evrobot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = evrobot.h; path = ../../include/evrobot.h; sourceTree = "<group>"; };
-		F44FEE571A6567980087E89D /* eventmanager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = eventmanager.h; path = ../../include/eventmanager.h; sourceTree = "<group>"; };
-		F44FEE581A6567CD0087E89D /* eventmanager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = eventmanager.cpp; path = ../../source/eventmanager.cpp; sourceTree = "<group>"; };
 		F44FEE5C1A656CAC0087E89D /* eventsystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = eventsystem.h; path = ../../include/eventsystem.h; sourceTree = "<group>"; };
 		F44FEE5D1A656CFB0087E89D /* eventsystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = eventsystem.cpp; path = ../../source/eventsystem.cpp; sourceTree = "<group>"; };
 		F44FEE661A6575C40087E89D /* eventelement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = eventelement.h; path = ../../include/eventelement.h; sourceTree = "<group>"; };
@@ -41,8 +37,6 @@
 		F44FEE691A65789D0087E89D /* evtypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = evtypes.h; path = ../../include/evtypes.h; sourceTree = "<group>"; };
 		F44FEE6B1A6598F40087E89D /* localeventsystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = localeventsystem.cpp; path = ../../source/localeventsystem.cpp; sourceTree = "<group>"; };
 		F44FEE6D1A65990D0087E89D /* localeventsystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = localeventsystem.h; path = ../../include/localeventsystem.h; sourceTree = "<group>"; };
-		F44FEE6E1A666C380087E89D /* messagequeue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = messagequeue.h; path = ../../include/messagequeue.h; sourceTree = "<group>"; };
-		F44FEE6F1A666C4C0087E89D /* messagequeue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = messagequeue.cpp; path = ../../source/messagequeue.cpp; sourceTree = "<group>"; };
 		F4760E1F1A6D0ECC005F7D64 /* libbabextended.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbabextended.a; path = ../../../babcode/babextended/project/macosx/Build/Products/Release/libbabextended.a; sourceTree = "<group>"; };
 		F4760E241A6D55CB005F7D64 /* evrobot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = evrobot.cpp; path = ../../source/evrobot.cpp; sourceTree = "<group>"; };
 		F4D4B5A81A6560B300D08CE2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -82,11 +76,9 @@
 		F448B9AE1A65606C00407EFC /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				F44FEE581A6567CD0087E89D /* eventmanager.cpp */,
 				F44FEE671A6576080087E89D /* eventelement.cpp */,
 				F44FEE5D1A656CFB0087E89D /* eventsystem.cpp */,
 				F44FEE6B1A6598F40087E89D /* localeventsystem.cpp */,
-				F44FEE6F1A666C4C0087E89D /* messagequeue.cpp */,
 				F4760E241A6D55CB005F7D64 /* evrobot.cpp */,
 			);
 			name = Source;
@@ -95,13 +87,11 @@
 		F448B9AF1A65607200407EFC /* Include */ = {
 			isa = PBXGroup;
 			children = (
-				F44FEE571A6567980087E89D /* eventmanager.h */,
 				F44FEE661A6575C40087E89D /* eventelement.h */,
 				F44FEE5C1A656CAC0087E89D /* eventsystem.h */,
 				F44FEE561A6566340087E89D /* evrobot.h */,
 				F44FEE691A65789D0087E89D /* evtypes.h */,
 				F44FEE6D1A65990D0087E89D /* localeventsystem.h */,
-				F44FEE6E1A666C380087E89D /* messagequeue.h */,
 			);
 			name = Include;
 			sourceTree = "<group>";
@@ -171,9 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4760E251A6D55CB005F7D64 /* evrobot.cpp in Sources */,
-				F44FEE591A6567CD0087E89D /* eventmanager.cpp in Sources */,
 				F44FEE6C1A6598F40087E89D /* localeventsystem.cpp in Sources */,
-				F44FEE701A666C4C0087E89D /* messagequeue.cpp in Sources */,
 				F4D4B5A91A6560B300D08CE2 /* main.cpp in Sources */,
 				F44FEE5E1A656CFB0087E89D /* eventsystem.cpp in Sources */,
 				F44FEE681A6576080087E89D /* eventelement.cpp in Sources */,

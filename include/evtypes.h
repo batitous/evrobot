@@ -31,6 +31,16 @@
 typedef uint32_t EventId;       // The type for an event
 
 
+enum EventDataType
+{
+    EVENT_DATA_BOOLEAN  = 0,
+    EVENT_DATA_INT8     = 1,
+    EVENT_DATA_UINT8    = 2,
+    EVENT_DATA_INT32    = 3,
+    EVENT_DATA_UINT32   = 4,
+    EVENT_DATA_FLOAT32  = 5
+};
+
 struct EventMessage
 {
     uint32_t    type;
@@ -42,10 +52,7 @@ struct EventMessage
         
         uint8_t     unsignedByte;
         int8_t      signedByte;
-        
-        uint16_t    unsignedShort;
-        int16_t     signedShort;
-        
+                
         uint32_t    unsignedInteger;
         int32_t     signedInteger;
         

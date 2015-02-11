@@ -26,6 +26,7 @@
 
 
 /** The system event interface :
+ * - Register and retrieve event element
  * - Responsible of start / stop system
  * - update the dispatch event loop
  *
@@ -33,10 +34,18 @@
 class EventSystem
 {
 public:
-    EventSystem(EventManager * em);
+    EventSystem();
     virtual ~EventSystem();
     
-    EventManager * eventManager();
+    EventElement * registerEvent(const EventId id, EventNotification * object, EventNotification::Callback callback);
+    void removeEvent(const EventId id);
+    
+    // Get the last event identifier posted
+    EventId getEventIdPosted();
+    
+    // Get the registered event from the specified identifier
+    EventElement * getEvent(const EventId id);
+    
     
     
     virtual void start() = 0;
@@ -48,7 +57,9 @@ public:
     virtual void post(const EventId id, float data) = 0;
     
 protected:
-    EventManager*  mEventManager;
+    
+    HashTable           mStores;        // Event storage object
+    
 };
 
 #endif

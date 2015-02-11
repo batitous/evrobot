@@ -23,17 +23,45 @@
 
 #include "../include/evrobot.h"
 
+#include <stdio.h>
 
-EventSystem::EventSystem(EventManager * em)
+#define STORE_DEFAULT_SIZE  32
+
+
+EventSystem::EventSystem()
 {
-    mEventManager = em;
+    hashTableInit(&mStores, STORE_DEFAULT_SIZE);
 }
 
 EventSystem::~EventSystem()
 {
 }
 
-EventManager * EventSystem::eventManager()
+EventElement * EventSystem::registerEvent(const EventId id, EventNotification * object, EventNotification::Callback callback)
 {
-    return mEventManager;
+    EventElement * event = (EventElement *)hashTableLookup(&mStores, id);
+    if (event!=0)
+    {
+        printf("EventManager::registerEvent %d already exists\r\n", id);
+        return event;
+    }
+    
+    event = new EventElement();
+    event->setCallback(object, callback);
+    event->setId(id);
+    
+    hashTableInsert(&mStores, id, event);
+    
+    return event;
 }
+
+void EventSystem::removeEvent(const EventId id)
+{
+    hashTableDelete(&mStores, id);
+}
+
+EventElement * EventSystem::getEvent(const EventId id)
+{
+    return (EventElement *)hashTableLookup(&mStores, id);
+}
+

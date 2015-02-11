@@ -23,7 +23,6 @@
 
 #include "../include/evrobot.h"
 
-EventManager *          EvRobot::mLocalManager = 0;
 LocalEventSystem *      EvRobot::mLocalEventSystem = 0;
 
 
@@ -31,8 +30,7 @@ LocalEventSystem * EvRobot::localEventSystem()
 {
     if (mLocalEventSystem==0)
     {
-        mLocalManager = new EventManager(32);
-        mLocalEventSystem = new LocalEventSystem(mLocalManager);
+        mLocalEventSystem = new LocalEventSystem();
     }
     
     return mLocalEventSystem;

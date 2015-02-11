@@ -24,11 +24,10 @@
 #include "../include/evrobot.h"
 
 
-EventElement::EventElement(uint32_t queueEventSize)
+EventElement::EventElement()
 {
     mThisCode = 0;
     mCallback = 0;
-    mQueue = new MessageQueue(queueEventSize);
 }
 
 EventId EventElement::id()
@@ -45,11 +44,6 @@ void EventElement::setCallback(EventNotification * object, EventNotification::Ca
 void EventElement::setId(EventId id)
 {
     mId = id;
-}
-
-MessageQueue * EventElement::queue()
-{
-    return mQueue;
 }
 
 void EventElement::callback(EventMessage * data)

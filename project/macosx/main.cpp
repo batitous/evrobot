@@ -43,7 +43,7 @@ public:
     
     void event1(EventMessage * d)
     {
-       printf("Titi:event1 %d\r\n", d->value.unsignedInteger);
+//       printf("Titi:event1 %d\r\n", d->value.unsignedInteger);
     }
     
     void event2(EventMessage * d)
@@ -98,21 +98,27 @@ int main(void)
     Titi            myTiti;
     
     LocalEventSystem * localSystem = EvRobot::localEventSystem();
-    EventManager * manager = localSystem->eventManager();
     
     
     EventElement *    myRobotEvent1;
     EventElement *    myRobotEvent2;
     
     // Register 2 events into the manager
-    myRobotEvent1 = manager->registerEvent(MY_EVENT1, &myTiti, (EventNotification::Callback)&Titi::event1);
-    myRobotEvent2 = manager->registerEvent(MY_EVENT2, &myTiti, (EventNotification::Callback)&Titi::event2);
+    myRobotEvent1 = localSystem->registerEvent(MY_EVENT1, &myTiti, (EventNotification::Callback)&Titi::event1);
+    myRobotEvent2 = localSystem->registerEvent(MY_EVENT2, &myTiti, (EventNotification::Callback)&Titi::event2);
     //myRobotEvent3 = manager.registerEvent(MY_EVENT2, &myTiti, (EventCode::Callback)&Titi::event1);
     
     
     // Create the local event system with the manager and start it !
     localSystem->start();
     
+    IpAddress address;
+    address.a = 127;
+    address.b = 0;
+    address.c = 0;
+    address.d = 1;
+    address.port = CONNECTION_EVENT_REMOTE_PORT;
+    localSystem->connect(&address);
     
     Thread t;
     threadInit(&t, toto, &localSystem);

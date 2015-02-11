@@ -26,12 +26,11 @@
 
 /** An event element object;
  * - store the user's callback pointer
- * - store the event queue with message data
  */
 class EventElement
 {
 public:
-    EventElement(uint32_t queueEventSize);
+    EventElement();
     
     EventId id();
     void setCallback(EventNotification * object, EventNotification::Callback callback);
@@ -39,12 +38,9 @@ public:
     
     void callback(EventMessage * data);
     
-    MessageQueue *   queue();
-    
     
 private:
     EventId                     mId;        // Event's Identifier
-    MessageQueue *              mQueue;     // Queue for storing message event
     EventNotification *         mThisCode;  // The this object for the event's callback
     EventNotification::Callback mCallback;  // The callback
 };

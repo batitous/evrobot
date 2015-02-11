@@ -23,6 +23,8 @@
 
 #include "../include/evrobot.h"
 
+#define UDP_EVENT_PROTOCOL_ID   0xBABADEAD
+
 
 void * LocalEventSystem::privateThreadLauncher(void * p)
 {
@@ -33,12 +35,20 @@ void * LocalEventSystem::privateThreadLauncher(void * p)
     return 0;
 }
 
-LocalEventSystem::LocalEventSystem(EventManager * m) : EventSystem(m)
+LocalEventSystem::LocalEventSystem() : EventSystem()
 {
-    mSynchro = new Synchronizer();
     mStopThread = false;
+    
+    mBuffer = new uint8_t[UDP_CONNECTION_PACKET_DATA_MAX];
+    mStream = newByteStream(mBuffer, UDP_CONNECTION_PACKET_DATA_MAX);
+    
+    mConnection = new UdpConnection(UDP_EVENT_PROTOCOL_ID);
 }
 
+void LocalEventSystem::connect(const IpAddress * address)
+{
+    mConnection->connect(address);
+}
 
 void LocalEventSystem::start()
 {
@@ -48,52 +58,66 @@ void LocalEventSystem::start()
 void LocalEventSystem::update()
 {
     EventId         id;
-    EventMessage *  value;
+    EventMessage    value;
+    int32_t         size;
+    EventElement *  event;
     
-    MessageQueue *  messageQueue;
-    EventElement *  event = 0;
+    uint8_t * packet = new uint8_t[UDP_CONNECTION_PACKET_DATA_MAX];
+    ByteStream * stream = newByteStream(packet, UDP_CONNECTION_PACKET_DATA_MAX);
+    
+    
+    mConnection->start(CONNECTION_EVENT_REMOTE_PORT);
+    
     
     while(mStopThread==false)
     {
-        while (  (id = mEventManager->getEventIdPosted()) != EVENT_ID_INVALID )
+        size = mConnection->waitAndReceive(packet, UDP_CONNECTION_PACKET_DATA_MAX);
+        
+        if (size > 0)
         {
-            event = mEventManager->getEvent(id);
-            messageQueue = event->queue();
+            resetByteStream(stream);
+            id = read32BitsFromStream(stream);
+            value.type = read32BitsFromStream(stream);
+            value.value.unsignedInteger = read32BitsFromStream(stream);
             
-//            printf("Event: %d\r\n", id);
-            
-            while( (messageQueue->read(&value))!=0)
+            event = getEvent(id);
+            if (event!=0)
             {
-//                printf("\t%d\r\n", value);
-                
-                //todo
-                
-                event->callback(value);
-                
+                event->callback(&value);
             }
         }
-        
-        mSynchro->wait();
-        
     }
+}
+
+void LocalEventSystem::sendEvent(const EventId id, EventDataType type, uint32_t data)
+{
+    EventElement * e = getEvent(id);
+    if (e==0)
+    {
+        return;
+    }
+
+    resetByteStream(mStream);
+    write32BitsToStream(mStream, id);
+    write32BitsToStream(mStream, id);
+    write32BitsToStream(mStream, data);
+    
+    mConnection->send(mStream->buffer, getByteStreamSize(mStream));
 }
 
 void LocalEventSystem::post(const EventId id, uint32_t data)
 {
-    mEventManager->post(id, data);
-    mSynchro->wakeup();
+    sendEvent(id, EVENT_DATA_UINT32, (uint32_t)data);
 }
 
 void LocalEventSystem::post(const EventId id, float data)
 {
-    mEventManager->post(id, data);
-    mSynchro->wakeup();
+    sendEvent(id, EVENT_DATA_FLOAT32, (uint32_t)data);
 }
 
 void LocalEventSystem::post(const EventId id, int32_t data)
 {
-    mEventManager->post(id, data);
-    mSynchro->wakeup();
+    sendEvent(id, EVENT_DATA_INT32, (uint32_t)data);
 }
 
 void LocalEventSystem::stop()

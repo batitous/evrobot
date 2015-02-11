@@ -23,13 +23,21 @@
 #ifndef EvRobot_localeventsystem_h
 #define EvRobot_localeventsystem_h
 
-/** A local event system on your computer
+
+#define CONNECTION_EVENT_LOCAL_PORT     21789
+#define CONNECTION_EVENT_REMOTE_PORT    21788
+
+
+
+/** A network event system
  *
  */
 class LocalEventSystem : public EventSystem
 {
 public:
-    LocalEventSystem(EventManager * m);
+    LocalEventSystem();
+    
+    void connect(const IpAddress * address);
     
     void start();
     void update();
@@ -42,7 +50,11 @@ public:
 private:
     bool                mStopThread;
     Thread              mThread;
-    Synchronizer *      mSynchro;       // Inter-thread synchronization
+    UdpConnection *     mConnection;
+    uint8_t *           mBuffer;
+    ByteStream *        mStream;
+    
+    void sendEvent(const EventId id, EventDataType type, uint32_t data);
     
     static void * privateThreadLauncher(void * p);
     

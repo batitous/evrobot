@@ -27,11 +27,7 @@
 #include <babextended.h>
 
 #include "evtypes.h"
-#include "queue.h"
-#include "messagequeue.h"
-#include "synchronizer.h"
 #include "eventelement.h"
-#include "eventmanager.h"
 #include "eventsystem.h"
 #include "localeventsystem.h"
 
@@ -47,7 +43,6 @@ public:
     
     
 private:
-    static EventManager *          mLocalManager;
     static LocalEventSystem *      mLocalEventSystem;
     
 };
