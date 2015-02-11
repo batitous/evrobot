@@ -42,9 +42,6 @@ public:
 
     void removeEvent(const EventId id);
     
-    // Get the last event identifier posted
-    EventId getEventIdPosted();
-    
     // Get the registered event from the specified identifier
     EventElement * getEvent(const EventId id);
     

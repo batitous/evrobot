@@ -37,6 +37,15 @@ void * LocalEventSystem::privateThreadLauncher(void * p)
     return 0;
 }
 
+void * LocalEventSystem::privateThreadRemoteLauncher(void *p)
+{
+    LocalEventSystem * s = (LocalEventSystem *)p;
+    
+    s->threadRemote();
+    
+    return 0;
+}
+
 LocalEventSystem::LocalEventSystem() : EventSystem()
 {
     mStopThread = false;
@@ -59,12 +68,20 @@ void LocalEventSystem::setRemoteAddress(const IpAddress * address)
     mRemoteIp.port = CONNECTION_EVENT_REMOTE_PORT;
 }
 
+void LocalEventSystem::startListenOnNetwork()
+{
+    mStopThread = false;
+    Thread thread;
+    threadInit(&thread, LocalEventSystem::privateThreadRemoteLauncher, this);
+}
+
 void LocalEventSystem::start()
 {
+    mStopThread = false;
     threadInit(&mThread, LocalEventSystem::privateThreadLauncher, this);
 }
 
-void LocalEventSystem::update()
+void LocalEventSystem::dispatchLoop(UdpConnection * connection, uint16_t port)
 {
     EventId         id;
     EventMessage    value;
@@ -74,26 +91,46 @@ void LocalEventSystem::update()
     uint8_t * packet = new uint8_t[UDP_CONNECTION_PACKET_DATA_MAX];
     ByteStream * stream = newByteStream(packet, UDP_CONNECTION_PACKET_DATA_MAX);
     
-    mConnection->start(CONNECTION_EVENT_LOCAL_PORT);
+    connection->start(port);
     
     while(mStopThread==false)
     {
-        size = mConnection->waitAndReceive(packet, UDP_CONNECTION_PACKET_DATA_MAX);
+        size = connection->waitAndReceive(packet, UDP_CONNECTION_PACKET_DATA_MAX);
         
         if (size > 0)
         {
-            resetByteStream(stream);
             id = read32BitsFromStream(stream);
-            value.type = read32BitsFromStream(stream);
-            value.value.unsignedInteger = read32BitsFromStream(stream);
             
-            event = getEvent(id);
-            if (event!=0)
+            if (id != EVENT_ID_INVALID)
             {
-                event->callback(&value);
+                value.type = (EventDataType)read32BitsFromStream(stream);
+                value.value.unsignedInteger = read32BitsFromStream(stream);
+                
+                event = getEvent(id);
+                if (event!=0)
+                {
+                    event->callback(&value);
+                }
             }
+            
+            resetByteStream(stream);
         }
     }
+    
+    delete packet;
+    delete stream;
+
+}
+
+void LocalEventSystem::update()
+{
+    dispatchLoop(mConnection, CONNECTION_EVENT_LOCAL_PORT);
+}
+
+void LocalEventSystem::threadRemote(void)
+{
+    UdpConnection * connection = new UdpConnection(UDP_EVENT_PROTOCOL_ID);
+    dispatchLoop(connection, CONNECTION_EVENT_REMOTE_PORT);
 }
 
 void LocalEventSystem::sendEvent(const EventId id, EventDataType type, uint32_t data)
@@ -135,6 +172,17 @@ void LocalEventSystem::stop()
 {
     mStopThread = true;
     
-    // todo wake up thread ?
+    // wake up local thread
+    mLocalIp.port = CONNECTION_EVENT_REMOTE_PORT;
+    mConnection->connect(&mLocalIp);
+    resetByteStream(mStream);
+    write32BitsToStream(mStream, EVENT_ID_INVALID);
+    mConnection->send(mStream->buffer, getByteStreamSize(mStream));
+    
+    mLocalIp.port = CONNECTION_EVENT_LOCAL_PORT;
+    mConnection->connect(&mLocalIp);
+    resetByteStream(mStream);
+    write32BitsToStream(mStream, EVENT_ID_INVALID);
+    mConnection->send(mStream->buffer, getByteStreamSize(mStream));
     
 }

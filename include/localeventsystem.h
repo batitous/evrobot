@@ -29,7 +29,7 @@
 
 
 
-/** A network event system
+/** A local event system that can be extended on the local network
  *
  */
 class LocalEventSystem : public EventSystem
@@ -37,8 +37,11 @@ class LocalEventSystem : public EventSystem
 public:
     LocalEventSystem();
     
-    // Set the remote address of a distance event system
+    // Set the remote address of a remote event system
     void setRemoteAddress(const IpAddress * address);
+    
+    // Start the event system on the local network
+    void startListenOnNetwork();
     
     void start();
     void update();
@@ -57,9 +60,13 @@ private:
     IpAddress           mLocalIp;
     IpAddress           mRemoteIp;
     
+    void dispatchLoop(UdpConnection * connection, uint16_t port);
     void sendEvent(const EventId id, EventDataType type, uint32_t data);
     
     static void * privateThreadLauncher(void * p);
+    
+    void threadRemote(void);
+    static void * privateThreadRemoteLauncher(void *p);
     
 };
 

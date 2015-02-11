@@ -31,6 +31,7 @@
 typedef uint32_t EventId;       // The type for an event
 
 
+// Type of event's data
 enum EventDataType
 {
     EVENT_DATA_BOOLEAN  = 0,
@@ -43,8 +44,8 @@ enum EventDataType
 
 struct EventMessage
 {
-    uint32_t    type;
-    uint32_t    size;
+    EventDataType   type;
+    uint32_t        size;
     
     union _value_
     {
