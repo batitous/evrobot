@@ -32,10 +32,12 @@ class EventElement
 public:
     EventElement();
     
-    EventId id();
     void setCallback(EventNotification * object, EventNotification::Callback callback);
-    void setId(EventId id);
     
+    EventId id();
+    void setId(EventId id);
+
+    // Execute the callback with the specified message
     void callback(EventMessage * data);
     
     

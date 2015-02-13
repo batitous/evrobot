@@ -40,10 +40,12 @@ public:
     // Set the remote address of a remote event system
     void setRemoteAddress(const IpAddress * address);
     
-    // Start the event system on the local network
+    // Start the event system on the network
     void startListenOnNetwork();
     
+    // Start the event system on the computer
     void start();
+    
     void update();
     void stop();
     

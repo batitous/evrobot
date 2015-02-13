@@ -42,6 +42,8 @@ enum EventDataType
     EVENT_DATA_FLOAT32  = 5
 };
 
+
+// An event's message
 struct EventMessage
 {
     EventDataType   type;
