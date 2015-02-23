@@ -109,6 +109,8 @@ void LocalEventSystem::dispatchLoop(UdpConnection * connection, uint16_t port)
                 event = getEvent(id);
                 if (event!=0)
                 {
+                    printf("eventid %d value %d %f\n", id, value.value.unsignedInteger, value.value.signedFloat);
+                    
                     event->callback(&value);
                 }
             }
@@ -172,7 +174,7 @@ void LocalEventSystem::stop()
 {
     mStopThread = true;
     
-    // wake up local thread
+    // wake up the local thread
     mLocalIp.port = CONNECTION_EVENT_REMOTE_PORT;
     mConnection->connect(&mLocalIp);
     resetByteStream(mStream);
