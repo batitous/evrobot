@@ -91,7 +91,10 @@ void LocalEventSystem::dispatchLoop(UdpConnection * connection, uint16_t port)
     uint8_t * packet = new uint8_t[UDP_CONNECTION_PACKET_DATA_MAX];
     ByteStream * stream = newByteStream(packet, UDP_CONNECTION_PACKET_DATA_MAX);
     
-    connection->start(port);
+    if (connection->start(port)!=NETWORK_OK)
+    {
+        Log::global()->error("LocalEventSystem::dispatchLoop failed to start connection!\n");
+    }
     
     while(mStopThread==false)
     {
