@@ -98,7 +98,8 @@ void LocalEventSystem::dispatchLoop(UdpConnection * connection, uint16_t port)
     
     while(mStopThread==false)
     {
-        size = connection->waitAndReceive(packet, UDP_CONNECTION_PACKET_DATA_MAX);
+        connection->waitSomeData();
+        size = connection->receive(packet, UDP_CONNECTION_PACKET_DATA_MAX);
         
         if (size > 0)
         {
